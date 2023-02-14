@@ -5,10 +5,9 @@ resource "helm_release" "prometheus" {
   chart            = "prometheus"
   create_namespace = "true"
   version          = "19.4.0"
-
-  #values = [
-  #   "${file("charts/prometheus/values.yaml")}"
-  #  ]
+values = [
+     "${file("~/dataloop-k8s/terraform/modules/k8s-manifests/charts/prometheus/values.yaml")}"
+   ]
 }
 
 resource "helm_release" "grafana" {
