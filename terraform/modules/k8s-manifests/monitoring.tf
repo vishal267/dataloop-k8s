@@ -16,8 +16,8 @@ resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
   version = "6.50.7"
-#values = [
-#    "${file("charts/grafana/values.yaml")}"
-#   ]
+values = [
+     "${file("~/dataloop-k8s/terraform/modules/k8s-manifests/charts/grafana/values.yaml")}"
+   ]
 }
 
