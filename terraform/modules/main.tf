@@ -2,6 +2,12 @@ provider "aws" {
   region = var.region_name
 }
 
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
 #module to launch vpc with two  private and two public subnets
 module "webapp_vpc" {
   source = "./vpc"
@@ -44,9 +50,10 @@ module "eks_node_group" {
     module.webapp_vpc
   ]
 }
-#module for ecr repo 
 
-module "ecr" {
-  source = "./ecr"
+
+#module for k8s services to deployed on EKS cluster 
+
+module "k8s-manifests" {
+  source = "./k8s-manifests"
 }
-
